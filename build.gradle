@@ -1,0 +1,47 @@
+buildscript {
+    ext {
+        grpcVersion = '1.44.0'
+        protoVersion = '3.17.3'
+        junitJupiterVersion = '5.8.2'
+        javaxAnnotationVersion = '1.3.2'
+        jakartaInjectVersion = '2.0.1'
+        lombokVersion = '1.18.22'
+        mapstructVersion = '1.5.0.RC1'
+        pgvVersion = '0.6.7'
+        javafakerVersion = '1.0.2'
+        snakeYamlVersion = '1.30'
+        jacksonVersion = '2.13.2'
+        protobufUtilVersion = '3.21.4'
+        outboxVersion = '0.0.5'
+        reactiveGrpcVersion = '0.0.5'
+        idempotencyVersion = '0.0.2'
+        jakartaPersistenceApiVersion = '3.1.0'
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+
+    java {
+        sourceCompatibility = JavaVersion.toVersion("17")
+        targetCompatibility = JavaVersion.toVersion("17")
+    }
+
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        maven {
+            url "https://europe-maven.pkg.dev/coremaker/java-libs"
+        }
+    }
+
+    dependencies {
+
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+}

@@ -1,0 +1,15 @@
+.gradle
+build/
+target/
+out/
+.idea
+*.iml
+*.ipr
+*.iws
+.project
+.settings
+.classpath
+.factorypath
+
+node_modules
+package-lock.json

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package com.samurai.v1;
+
+import "com/samurai/v1/samurai.proto";
+
+option java_multiple_files = true;
+
+message ListSamuraiResponse {
+  repeated Samurai items = 1;
+}

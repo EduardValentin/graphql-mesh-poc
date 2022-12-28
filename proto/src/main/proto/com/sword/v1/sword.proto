@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package com.sword.v1;
+
+option java_multiple_files = true;
+
+message Sword {
+  string id = 1;
+  string name = 2;
+  Type type = 3;
+  string samurai_id = 4;
+}
+
+enum Type {
+  UNKNOWN = 0;
+  KATANA = 1;
+  TACHI = 2;
+  UCHIGATANA = 3;
+  WAKIZASHI = 4;
+}

@@ -1,0 +1,30 @@
+sources:
+  - name: sword-api
+    handler:
+      grpc:
+        endpoint: localhost:50051
+        source:
+          file: ../proto/src/main/proto/com/sword/v1/sword_service.proto
+          load:
+            includeDirs:
+              - ../proto/src/main/proto
+  - name: samurai-api
+    handler:
+      grpc:
+        endpoint: localhost:50052
+        source:
+          file: ../proto/src/main/proto/com/samurai/v1/samurai_service.proto
+          load:
+            includeDirs:
+              - ../proto/src/main/proto
+
+additionalTypeDefs: |
+  extend type com_samurai_v1_Samurai {
+    swords: [com_sword_v1_Sword]
+  }
+  extend type com_sword_v1_Sword {
+    samurai: com_samurai_v1_Samurai 
+  }
+
+additionalResolvers:
+  - "./resolvers.ts"

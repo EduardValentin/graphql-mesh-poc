@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package com.samurai.v1;
+
+import "com/samurai/v1/get_by_id_request.proto";
+import "com/samurai/v1/samurai.proto";
+import "com/samurai/v1/list_samurai_by_id.proto";
+import "com/samurai/v1/list_samurai_response.proto";
+import "google/protobuf/empty.proto";
+
+option java_multiple_files = true;
+
+service SamuraiService {
+  rpc GetById (GetByIdRequest) returns (Samurai);
+  rpc ListAllSamurai (google.protobuf.Empty) returns (stream Samurai);
+  rpc ListById (ListSamuraiById) returns (stream Samurai);
+}

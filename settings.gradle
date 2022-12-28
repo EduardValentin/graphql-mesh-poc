@@ -1,0 +1,11 @@
+
+rootProject.name="graphql-mesh-poc"
+
+include 'sword'
+project(":sword").projectDir = file ("sword")
+
+include 'samurai'
+project(":samurai").projectDir = file ("samurai")
+
+include 'proto'
+project(":proto").projectDir = file ("proto")

@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package com.sword.v1;
+
+option java_multiple_files = true;
+
+import "com/sword/v1/sword.proto";
+import "com/sword/v1/create_sword_request.proto";
+import "com/sword/v1/list_by_samurai_id_request.proto";
+import "com/sword/v1/get_by_id_request.proto";
+import "com/sword/v1/samurai_with_swords_request.proto";
+import "com/sword/v1/samurai_with_swords_response.proto";
+import "com/sword/v1/list_swords_by_id_request.proto";
+import "com/sword/v1/list_samurai_with_swords_request.proto";
+import "google/protobuf/empty.proto";
+
+service SwordService {
+  rpc CreateSword (CreateSwordRequest) returns (Sword);
+  rpc ListSwords (google.protobuf.Empty) returns (stream Sword);
+  rpc ListBySamuraiId (ListBySamuraiIdRequest) returns (stream Sword);
+  rpc GetById (GetByIdRequest) returns (Sword);
+  rpc ListById (ListSwordsByIdRequest) returns (stream Sword);
+  rpc GetSamuraiWithSwords (SamuraiWithSwordsRequest) returns (SamuraiWithSwordsResponse);
+  rpc ListSamuraiWithSwords (ListSamuraiWithSwordsRequest) returns (stream SamuraiWithSwordsResponse);
+}

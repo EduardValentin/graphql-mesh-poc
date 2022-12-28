@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package com.sword.v1;
+
+import "com/sword/v1/sword.proto";
+
+option java_multiple_files = true;
+
+message SamuraiWithSwordsResponse {
+  string id = 1;
+  repeated Sword swords = 2;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package com.samurai.v1;
+
+option java_multiple_files = true;
+
+message Samurai {
+  string id = 1;
+  string name = 2;
+  int32 age = 3;
+}

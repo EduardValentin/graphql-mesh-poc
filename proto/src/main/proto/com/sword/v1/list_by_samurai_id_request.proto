@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package com.sword.v1;
+
+option java_multiple_files = true;
+
+message ListBySamuraiIdRequest {
+  string id = 1;
+}
