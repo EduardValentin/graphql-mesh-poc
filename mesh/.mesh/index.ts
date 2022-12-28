@@ -17,8 +17,8 @@ import { getMesh, ExecuteMeshFn, SubscribeMeshFn, MeshContext as BaseMeshContext
 import { MeshStore, FsStoreStorageAdapter } from '@graphql-mesh/store';
 import { path as pathModule } from '@graphql-mesh/cross-helpers';
 import { ImportFn } from '@graphql-mesh/types';
-import type { SwordApiTypes } from './sources/sword-api/types';
 import type { SamuraiApiTypes } from './sources/samurai-api/types';
+import type { SwordApiTypes } from './sources/sword-api/types';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -145,6 +145,7 @@ export type com_sword_v1_Sword = {
   name?: Maybe<Scalars['String']>;
   type?: Maybe<com_sword_v1_Type>;
   samurai_id?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['String']>;
   samurai?: Maybe<com_samurai_v1_Samurai>;
 };
 
@@ -347,6 +348,7 @@ export type com_sword_v1_SwordResolvers<ContextType = MeshContext, ParentType ex
   name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   type?: Resolver<Maybe<ResolversTypes['com_sword_v1_Type']>, ParentType, ContextType>;
   samurai_id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  created_at?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   samurai?: Resolver<Maybe<ResolversTypes['com_samurai_v1_Samurai']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;

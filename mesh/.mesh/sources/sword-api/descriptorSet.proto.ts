@@ -12,6 +12,42 @@ export default [
       "package": "com.sword.v1",
       "messageType": [
         {
+          "name": "Sword",
+          "field": [
+            {
+              "name": "id",
+              "number": 1,
+              "label": "LABEL_OPTIONAL",
+              "type": "TYPE_STRING"
+            },
+            {
+              "name": "name",
+              "number": 2,
+              "label": "LABEL_OPTIONAL",
+              "type": "TYPE_STRING"
+            },
+            {
+              "name": "type",
+              "number": 3,
+              "label": "LABEL_OPTIONAL",
+              "type": "TYPE_ENUM",
+              "typeName": "Type"
+            },
+            {
+              "name": "samurai_id",
+              "number": 4,
+              "label": "LABEL_OPTIONAL",
+              "type": "TYPE_STRING"
+            },
+            {
+              "name": "created_at",
+              "number": 5,
+              "label": "LABEL_OPTIONAL",
+              "type": "TYPE_STRING"
+            }
+          ]
+        },
+        {
           "name": "CreateSwordRequest",
           "field": [
             {
@@ -58,30 +94,22 @@ export default [
           ]
         },
         {
-          "name": "Sword",
+          "name": "ListSwordsByIdRequest",
+          "field": [
+            {
+              "name": "ids",
+              "number": 1,
+              "label": "LABEL_REPEATED",
+              "type": "TYPE_STRING"
+            }
+          ]
+        },
+        {
+          "name": "SamuraiWithSwordsRequest",
           "field": [
             {
               "name": "id",
               "number": 1,
-              "label": "LABEL_OPTIONAL",
-              "type": "TYPE_STRING"
-            },
-            {
-              "name": "name",
-              "number": 2,
-              "label": "LABEL_OPTIONAL",
-              "type": "TYPE_STRING"
-            },
-            {
-              "name": "type",
-              "number": 3,
-              "label": "LABEL_OPTIONAL",
-              "type": "TYPE_ENUM",
-              "typeName": "Type"
-            },
-            {
-              "name": "samurai_id",
-              "number": 4,
               "label": "LABEL_OPTIONAL",
               "type": "TYPE_STRING"
             }
@@ -102,28 +130,6 @@ export default [
               "label": "LABEL_REPEATED",
               "type": "TYPE_MESSAGE",
               "typeName": "Sword"
-            }
-          ]
-        },
-        {
-          "name": "SamuraiWithSwordsRequest",
-          "field": [
-            {
-              "name": "id",
-              "number": 1,
-              "label": "LABEL_OPTIONAL",
-              "type": "TYPE_STRING"
-            }
-          ]
-        },
-        {
-          "name": "ListSwordsByIdRequest",
-          "field": [
-            {
-              "name": "ids",
-              "number": 1,
-              "label": "LABEL_REPEATED",
-              "type": "TYPE_STRING"
             }
           ]
         },
@@ -284,6 +290,53 @@ export default [
                   },
                   "comment": null
                 },
+                "Sword": {
+                  "fields": {
+                    "id": {
+                      "type": "string",
+                      "id": 1,
+                      "comment": null
+                    },
+                    "name": {
+                      "type": "string",
+                      "id": 2,
+                      "comment": null
+                    },
+                    "type": {
+                      "type": "Type",
+                      "id": 3,
+                      "comment": null
+                    },
+                    "samurai_id": {
+                      "type": "string",
+                      "id": 4,
+                      "comment": null
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "id": 5,
+                      "comment": null
+                    }
+                  },
+                  "comment": null
+                },
+                "Type": {
+                  "values": {
+                    "UNKNOWN": 0,
+                    "KATANA": 1,
+                    "TACHI": 2,
+                    "UCHIGATANA": 3,
+                    "WAKIZASHI": 4
+                  },
+                  "comment": null,
+                  "comments": {
+                    "UNKNOWN": null,
+                    "KATANA": null,
+                    "TACHI": null,
+                    "UCHIGATANA": null,
+                    "WAKIZASHI": null
+                  }
+                },
                 "CreateSwordRequest": {
                   "fields": {
                     "name": {
@@ -324,59 +377,12 @@ export default [
                   },
                   "comment": null
                 },
-                "Sword": {
+                "ListSwordsByIdRequest": {
                   "fields": {
-                    "id": {
-                      "type": "string",
-                      "id": 1,
-                      "comment": null
-                    },
-                    "name": {
-                      "type": "string",
-                      "id": 2,
-                      "comment": null
-                    },
-                    "type": {
-                      "type": "Type",
-                      "id": 3,
-                      "comment": null
-                    },
-                    "samurai_id": {
-                      "type": "string",
-                      "id": 4,
-                      "comment": null
-                    }
-                  },
-                  "comment": null
-                },
-                "Type": {
-                  "values": {
-                    "UNKNOWN": 0,
-                    "KATANA": 1,
-                    "TACHI": 2,
-                    "UCHIGATANA": 3,
-                    "WAKIZASHI": 4
-                  },
-                  "comment": null,
-                  "comments": {
-                    "UNKNOWN": null,
-                    "KATANA": null,
-                    "TACHI": null,
-                    "UCHIGATANA": null,
-                    "WAKIZASHI": null
-                  }
-                },
-                "SamuraiWithSwordsResponse": {
-                  "fields": {
-                    "id": {
-                      "type": "string",
-                      "id": 1,
-                      "comment": null
-                    },
-                    "swords": {
+                    "ids": {
                       "rule": "repeated",
-                      "type": "Sword",
-                      "id": 2,
+                      "type": "string",
+                      "id": 1,
                       "comment": null
                     }
                   },
@@ -392,12 +398,17 @@ export default [
                   },
                   "comment": null
                 },
-                "ListSwordsByIdRequest": {
+                "SamuraiWithSwordsResponse": {
                   "fields": {
-                    "ids": {
-                      "rule": "repeated",
+                    "id": {
                       "type": "string",
                       "id": 1,
+                      "comment": null
+                    },
+                    "swords": {
+                      "rule": "repeated",
+                      "type": "Sword",
+                      "id": 2,
                       "comment": null
                     }
                   },

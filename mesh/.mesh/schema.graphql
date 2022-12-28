@@ -51,6 +51,7 @@ type com_sword_v1_Sword {
   name: String
   type: com_sword_v1_Type
   samurai_id: String
+  created_at: String
   samurai: com_samurai_v1_Samurai
 }
 

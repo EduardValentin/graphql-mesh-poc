@@ -18,6 +18,7 @@ type com_sword_v1_Sword {
   name: String
   type: com_sword_v1_Type
   samurai_id: String
+  created_at: String
 }
 
 enum com_sword_v1_Type {
