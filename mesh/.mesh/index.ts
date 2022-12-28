@@ -17,8 +17,8 @@ import { getMesh, ExecuteMeshFn, SubscribeMeshFn, MeshContext as BaseMeshContext
 import { MeshStore, FsStoreStorageAdapter } from '@graphql-mesh/store';
 import { path as pathModule } from '@graphql-mesh/cross-helpers';
 import { ImportFn } from '@graphql-mesh/types';
-import type { SamuraiApiTypes } from './sources/samurai-api/types';
 import type { SwordApiTypes } from './sources/sword-api/types';
+import type { SamuraiApiTypes } from './sources/samurai-api/types';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -41,10 +41,6 @@ export type Scalars = {
 };
 
 export type Query = {
-  com_samurai_v1_SamuraiService_GetById?: Maybe<com_samurai_v1_Samurai>;
-  com_samurai_v1_SamuraiService_ListAllSamurai?: Maybe<Array<Maybe<com_samurai_v1_Samurai>>>;
-  com_samurai_v1_SamuraiService_ListById?: Maybe<Array<Maybe<com_samurai_v1_Samurai>>>;
-  com_samurai_v1_SamuraiService_connectivityState?: Maybe<ConnectivityState>;
   com_sword_v1_SwordService_ListSwords?: Maybe<Array<Maybe<com_sword_v1_Sword>>>;
   com_sword_v1_SwordService_ListBySamuraiId?: Maybe<Array<Maybe<com_sword_v1_Sword>>>;
   com_sword_v1_SwordService_GetById?: Maybe<com_sword_v1_Sword>;
@@ -52,26 +48,10 @@ export type Query = {
   com_sword_v1_SwordService_GetSamuraiWithSwords?: Maybe<com_sword_v1_SamuraiWithSwordsResponse>;
   com_sword_v1_SwordService_ListSamuraiWithSwords?: Maybe<Array<Maybe<com_sword_v1_SamuraiWithSwordsResponse>>>;
   com_sword_v1_SwordService_connectivityState?: Maybe<ConnectivityState>;
-};
-
-
-export type Querycom_samurai_v1_SamuraiService_GetByIdArgs = {
-  input?: InputMaybe<com_samurai_v1_GetByIdRequest_Input>;
-};
-
-
-export type Querycom_samurai_v1_SamuraiService_ListAllSamuraiArgs = {
-  input?: InputMaybe<Scalars['google_protobuf_Empty_Input']>;
-};
-
-
-export type Querycom_samurai_v1_SamuraiService_ListByIdArgs = {
-  input?: InputMaybe<com_samurai_v1_ListSamuraiById_Input>;
-};
-
-
-export type Querycom_samurai_v1_SamuraiService_connectivityStateArgs = {
-  tryToConnect?: InputMaybe<Scalars['Boolean']>;
+  com_samurai_v1_SamuraiService_GetById?: Maybe<com_samurai_v1_Samurai>;
+  com_samurai_v1_SamuraiService_ListAllSamurai?: Maybe<Array<Maybe<com_samurai_v1_Samurai>>>;
+  com_samurai_v1_SamuraiService_ListById?: Maybe<Array<Maybe<com_samurai_v1_Samurai>>>;
+  com_samurai_v1_SamuraiService_connectivityState?: Maybe<ConnectivityState>;
 };
 
 
@@ -109,27 +89,25 @@ export type Querycom_sword_v1_SwordService_connectivityStateArgs = {
   tryToConnect?: InputMaybe<Scalars['Boolean']>;
 };
 
-export type com_samurai_v1_Samurai = {
-  id?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  age?: Maybe<Scalars['Int']>;
-  swords?: Maybe<Array<Maybe<com_sword_v1_Sword>>>;
+
+export type Querycom_samurai_v1_SamuraiService_GetByIdArgs = {
+  input?: InputMaybe<com_samurai_v1_GetByIdRequest_Input>;
 };
 
-export type com_samurai_v1_GetByIdRequest_Input = {
-  id?: InputMaybe<Scalars['String']>;
+
+export type Querycom_samurai_v1_SamuraiService_ListAllSamuraiArgs = {
+  input?: InputMaybe<Scalars['google_protobuf_Empty_Input']>;
 };
 
-export type com_samurai_v1_ListSamuraiById_Input = {
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+
+export type Querycom_samurai_v1_SamuraiService_ListByIdArgs = {
+  input?: InputMaybe<com_samurai_v1_ListSamuraiById_Input>;
 };
 
-export type ConnectivityState =
-  | 'IDLE'
-  | 'CONNECTING'
-  | 'READY'
-  | 'TRANSIENT_FAILURE'
-  | 'SHUTDOWN';
+
+export type Querycom_samurai_v1_SamuraiService_connectivityStateArgs = {
+  tryToConnect?: InputMaybe<Scalars['Boolean']>;
+};
 
 export type Mutation = {
   com_sword_v1_SwordService_CreateSword?: Maybe<com_sword_v1_Sword>;
@@ -145,6 +123,7 @@ export type com_sword_v1_Sword = {
   name?: Maybe<Scalars['String']>;
   type?: Maybe<com_sword_v1_Type>;
   samurai_id?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['String']>;
   samurai?: Maybe<com_samurai_v1_Samurai>;
 };
 
@@ -180,10 +159,32 @@ export type com_sword_v1_ListSamuraiWithSwordsRequest_Input = {
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+export type ConnectivityState =
+  | 'IDLE'
+  | 'CONNECTING'
+  | 'READY'
+  | 'TRANSIENT_FAILURE'
+  | 'SHUTDOWN';
+
 export type com_sword_v1_CreateSwordRequest_Input = {
   name?: InputMaybe<Scalars['String']>;
   type?: InputMaybe<com_sword_v1_Type>;
   samurai_id?: InputMaybe<Scalars['String']>;
+};
+
+export type com_samurai_v1_Samurai = {
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  age?: Maybe<Scalars['Int']>;
+  swords?: Maybe<Array<Maybe<com_sword_v1_Sword>>>;
+};
+
+export type com_samurai_v1_GetByIdRequest_Input = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+export type com_samurai_v1_ListSamuraiById_Input = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type WithIndex<TObject> = TObject & Record<string, any>;
@@ -271,52 +272,48 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
   Query: ResolverTypeWrapper<{}>;
-  com_samurai_v1_Samurai: ResolverTypeWrapper<com_samurai_v1_Samurai>;
-  String: ResolverTypeWrapper<Scalars['String']>;
-  Int: ResolverTypeWrapper<Scalars['Int']>;
-  com_samurai_v1_GetByIdRequest_Input: com_samurai_v1_GetByIdRequest_Input;
-  google_protobuf_Empty_Input: ResolverTypeWrapper<Scalars['google_protobuf_Empty_Input']>;
-  com_samurai_v1_ListSamuraiById_Input: com_samurai_v1_ListSamuraiById_Input;
-  ConnectivityState: ConnectivityState;
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Mutation: ResolverTypeWrapper<{}>;
   com_sword_v1_Sword: ResolverTypeWrapper<com_sword_v1_Sword>;
+  String: ResolverTypeWrapper<Scalars['String']>;
   com_sword_v1_Type: com_sword_v1_Type;
+  google_protobuf_Empty_Input: ResolverTypeWrapper<Scalars['google_protobuf_Empty_Input']>;
   com_sword_v1_ListBySamuraiIdRequest_Input: com_sword_v1_ListBySamuraiIdRequest_Input;
   com_sword_v1_GetByIdRequest_Input: com_sword_v1_GetByIdRequest_Input;
   com_sword_v1_ListSwordsByIdRequest_Input: com_sword_v1_ListSwordsByIdRequest_Input;
   com_sword_v1_SamuraiWithSwordsResponse: ResolverTypeWrapper<com_sword_v1_SamuraiWithSwordsResponse>;
   com_sword_v1_SamuraiWithSwordsRequest_Input: com_sword_v1_SamuraiWithSwordsRequest_Input;
   com_sword_v1_ListSamuraiWithSwordsRequest_Input: com_sword_v1_ListSamuraiWithSwordsRequest_Input;
+  ConnectivityState: ConnectivityState;
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   com_sword_v1_CreateSwordRequest_Input: com_sword_v1_CreateSwordRequest_Input;
+  com_samurai_v1_Samurai: ResolverTypeWrapper<com_samurai_v1_Samurai>;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
+  com_samurai_v1_GetByIdRequest_Input: com_samurai_v1_GetByIdRequest_Input;
+  com_samurai_v1_ListSamuraiById_Input: com_samurai_v1_ListSamuraiById_Input;
 }>;
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
   Query: {};
-  com_samurai_v1_Samurai: com_samurai_v1_Samurai;
-  String: Scalars['String'];
-  Int: Scalars['Int'];
-  com_samurai_v1_GetByIdRequest_Input: com_samurai_v1_GetByIdRequest_Input;
-  google_protobuf_Empty_Input: Scalars['google_protobuf_Empty_Input'];
-  com_samurai_v1_ListSamuraiById_Input: com_samurai_v1_ListSamuraiById_Input;
-  Boolean: Scalars['Boolean'];
   Mutation: {};
   com_sword_v1_Sword: com_sword_v1_Sword;
+  String: Scalars['String'];
+  google_protobuf_Empty_Input: Scalars['google_protobuf_Empty_Input'];
   com_sword_v1_ListBySamuraiIdRequest_Input: com_sword_v1_ListBySamuraiIdRequest_Input;
   com_sword_v1_GetByIdRequest_Input: com_sword_v1_GetByIdRequest_Input;
   com_sword_v1_ListSwordsByIdRequest_Input: com_sword_v1_ListSwordsByIdRequest_Input;
   com_sword_v1_SamuraiWithSwordsResponse: com_sword_v1_SamuraiWithSwordsResponse;
   com_sword_v1_SamuraiWithSwordsRequest_Input: com_sword_v1_SamuraiWithSwordsRequest_Input;
   com_sword_v1_ListSamuraiWithSwordsRequest_Input: com_sword_v1_ListSamuraiWithSwordsRequest_Input;
+  Boolean: Scalars['Boolean'];
   com_sword_v1_CreateSwordRequest_Input: com_sword_v1_CreateSwordRequest_Input;
+  com_samurai_v1_Samurai: com_samurai_v1_Samurai;
+  Int: Scalars['Int'];
+  com_samurai_v1_GetByIdRequest_Input: com_samurai_v1_GetByIdRequest_Input;
+  com_samurai_v1_ListSamuraiById_Input: com_samurai_v1_ListSamuraiById_Input;
 }>;
 
 export type QueryResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
-  com_samurai_v1_SamuraiService_GetById?: Resolver<Maybe<ResolversTypes['com_samurai_v1_Samurai']>, ParentType, ContextType, Partial<Querycom_samurai_v1_SamuraiService_GetByIdArgs>>;
-  com_samurai_v1_SamuraiService_ListAllSamurai?: Resolver<Maybe<Array<Maybe<ResolversTypes['com_samurai_v1_Samurai']>>>, ParentType, ContextType, Partial<Querycom_samurai_v1_SamuraiService_ListAllSamuraiArgs>>;
-  com_samurai_v1_SamuraiService_ListById?: Resolver<Maybe<Array<Maybe<ResolversTypes['com_samurai_v1_Samurai']>>>, ParentType, ContextType, Partial<Querycom_samurai_v1_SamuraiService_ListByIdArgs>>;
-  com_samurai_v1_SamuraiService_connectivityState?: Resolver<Maybe<ResolversTypes['ConnectivityState']>, ParentType, ContextType, Partial<Querycom_samurai_v1_SamuraiService_connectivityStateArgs>>;
   com_sword_v1_SwordService_ListSwords?: Resolver<Maybe<Array<Maybe<ResolversTypes['com_sword_v1_Sword']>>>, ParentType, ContextType, Partial<Querycom_sword_v1_SwordService_ListSwordsArgs>>;
   com_sword_v1_SwordService_ListBySamuraiId?: Resolver<Maybe<Array<Maybe<ResolversTypes['com_sword_v1_Sword']>>>, ParentType, ContextType, Partial<Querycom_sword_v1_SwordService_ListBySamuraiIdArgs>>;
   com_sword_v1_SwordService_GetById?: Resolver<Maybe<ResolversTypes['com_sword_v1_Sword']>, ParentType, ContextType, Partial<Querycom_sword_v1_SwordService_GetByIdArgs>>;
@@ -324,19 +321,11 @@ export type QueryResolvers<ContextType = MeshContext, ParentType extends Resolve
   com_sword_v1_SwordService_GetSamuraiWithSwords?: Resolver<Maybe<ResolversTypes['com_sword_v1_SamuraiWithSwordsResponse']>, ParentType, ContextType, Partial<Querycom_sword_v1_SwordService_GetSamuraiWithSwordsArgs>>;
   com_sword_v1_SwordService_ListSamuraiWithSwords?: Resolver<Maybe<Array<Maybe<ResolversTypes['com_sword_v1_SamuraiWithSwordsResponse']>>>, ParentType, ContextType, Partial<Querycom_sword_v1_SwordService_ListSamuraiWithSwordsArgs>>;
   com_sword_v1_SwordService_connectivityState?: Resolver<Maybe<ResolversTypes['ConnectivityState']>, ParentType, ContextType, Partial<Querycom_sword_v1_SwordService_connectivityStateArgs>>;
+  com_samurai_v1_SamuraiService_GetById?: Resolver<Maybe<ResolversTypes['com_samurai_v1_Samurai']>, ParentType, ContextType, Partial<Querycom_samurai_v1_SamuraiService_GetByIdArgs>>;
+  com_samurai_v1_SamuraiService_ListAllSamurai?: Resolver<Maybe<Array<Maybe<ResolversTypes['com_samurai_v1_Samurai']>>>, ParentType, ContextType, Partial<Querycom_samurai_v1_SamuraiService_ListAllSamuraiArgs>>;
+  com_samurai_v1_SamuraiService_ListById?: Resolver<Maybe<Array<Maybe<ResolversTypes['com_samurai_v1_Samurai']>>>, ParentType, ContextType, Partial<Querycom_samurai_v1_SamuraiService_ListByIdArgs>>;
+  com_samurai_v1_SamuraiService_connectivityState?: Resolver<Maybe<ResolversTypes['ConnectivityState']>, ParentType, ContextType, Partial<Querycom_samurai_v1_SamuraiService_connectivityStateArgs>>;
 }>;
-
-export type com_samurai_v1_SamuraiResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['com_samurai_v1_Samurai'] = ResolversParentTypes['com_samurai_v1_Samurai']> = ResolversObject<{
-  id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  age?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  swords?: Resolver<Maybe<Array<Maybe<ResolversTypes['com_sword_v1_Sword']>>>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export interface google_protobuf_Empty_InputScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['google_protobuf_Empty_Input'], any> {
-  name: 'google_protobuf_Empty_Input';
-}
 
 export type MutationResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
   com_sword_v1_SwordService_CreateSword?: Resolver<Maybe<ResolversTypes['com_sword_v1_Sword']>, ParentType, ContextType, Partial<Mutationcom_sword_v1_SwordService_CreateSwordArgs>>;
@@ -347,9 +336,14 @@ export type com_sword_v1_SwordResolvers<ContextType = MeshContext, ParentType ex
   name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   type?: Resolver<Maybe<ResolversTypes['com_sword_v1_Type']>, ParentType, ContextType>;
   samurai_id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  created_at?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   samurai?: Resolver<Maybe<ResolversTypes['com_samurai_v1_Samurai']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
+
+export interface google_protobuf_Empty_InputScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['google_protobuf_Empty_Input'], any> {
+  name: 'google_protobuf_Empty_Input';
+}
 
 export type com_sword_v1_SamuraiWithSwordsResponseResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['com_sword_v1_SamuraiWithSwordsResponse'] = ResolversParentTypes['com_sword_v1_SamuraiWithSwordsResponse']> = ResolversObject<{
   id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -357,17 +351,25 @@ export type com_sword_v1_SamuraiWithSwordsResponseResolvers<ContextType = MeshCo
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
+export type com_samurai_v1_SamuraiResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['com_samurai_v1_Samurai'] = ResolversParentTypes['com_samurai_v1_Samurai']> = ResolversObject<{
+  id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  age?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  swords?: Resolver<Maybe<Array<Maybe<ResolversTypes['com_sword_v1_Sword']>>>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
 export type Resolvers<ContextType = MeshContext> = ResolversObject<{
   Query?: QueryResolvers<ContextType>;
-  com_samurai_v1_Samurai?: com_samurai_v1_SamuraiResolvers<ContextType>;
-  google_protobuf_Empty_Input?: GraphQLScalarType;
   Mutation?: MutationResolvers<ContextType>;
   com_sword_v1_Sword?: com_sword_v1_SwordResolvers<ContextType>;
+  google_protobuf_Empty_Input?: GraphQLScalarType;
   com_sword_v1_SamuraiWithSwordsResponse?: com_sword_v1_SamuraiWithSwordsResponseResolvers<ContextType>;
+  com_samurai_v1_Samurai?: com_samurai_v1_SamuraiResolvers<ContextType>;
 }>;
 
 
-export type MeshContext = SamuraiApiTypes.Context & SwordApiTypes.Context & BaseMeshContext;
+export type MeshContext = SwordApiTypes.Context & SamuraiApiTypes.Context & BaseMeshContext;
 
 
 const baseDir = pathModule.join(typeof __dirname === 'string' ? __dirname : '/', '..');
@@ -375,11 +377,11 @@ const baseDir = pathModule.join(typeof __dirname === 'string' ? __dirname : '/',
 const importFn: ImportFn = <T>(moduleId: string) => {
   const relativeModuleId = (pathModule.isAbsolute(moduleId) ? pathModule.relative(baseDir, moduleId) : moduleId).split('\\').join('/').replace(baseDir + '/', '');
   switch(relativeModuleId) {
-    case ".mesh/sources/samurai-api/descriptorSet.proto":
-      return import("./sources/samurai-api/descriptorSet.proto") as T;
-    
     case ".mesh/sources/sword-api/descriptorSet.proto":
       return import("./sources/sword-api/descriptorSet.proto") as T;
+    
+    case ".mesh/sources/samurai-api/descriptorSet.proto":
+      return import("./sources/samurai-api/descriptorSet.proto") as T;
     
     default:
       return Promise.reject(new Error(`Cannot find module '${relativeModuleId}'.`));

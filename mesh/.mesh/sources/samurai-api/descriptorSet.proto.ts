@@ -12,14 +12,13 @@ export default [
       "package": "com.samurai.v1",
       "messageType": [
         {
-          "name": "ListSamuraiResponse",
+          "name": "GetByIdRequest",
           "field": [
             {
-              "name": "items",
+              "name": "id",
               "number": 1,
-              "label": "LABEL_REPEATED",
-              "type": "TYPE_MESSAGE",
-              "typeName": "Samurai"
+              "label": "LABEL_OPTIONAL",
+              "type": "TYPE_STRING"
             }
           ]
         },
@@ -47,23 +46,24 @@ export default [
           ]
         },
         {
+          "name": "ListSamuraiResponse",
+          "field": [
+            {
+              "name": "items",
+              "number": 1,
+              "label": "LABEL_REPEATED",
+              "type": "TYPE_MESSAGE",
+              "typeName": "Samurai"
+            }
+          ]
+        },
+        {
           "name": "ListSamuraiById",
           "field": [
             {
               "name": "ids",
               "number": 1,
               "label": "LABEL_REPEATED",
-              "type": "TYPE_STRING"
-            }
-          ]
-        },
-        {
-          "name": "GetByIdRequest",
-          "field": [
-            {
-              "name": "id",
-              "number": 1,
-              "label": "LABEL_OPTIONAL",
               "type": "TYPE_STRING"
             }
           ]
@@ -143,11 +143,10 @@ export default [
                   },
                   "comment": null
                 },
-                "ListSamuraiResponse": {
+                "GetByIdRequest": {
                   "fields": {
-                    "items": {
-                      "rule": "repeated",
-                      "type": "Samurai",
+                    "id": {
+                      "type": "string",
                       "id": 1,
                       "comment": null
                     }
@@ -174,20 +173,21 @@ export default [
                   },
                   "comment": null
                 },
-                "ListSamuraiById": {
+                "ListSamuraiResponse": {
                   "fields": {
-                    "ids": {
+                    "items": {
                       "rule": "repeated",
-                      "type": "string",
+                      "type": "Samurai",
                       "id": 1,
                       "comment": null
                     }
                   },
                   "comment": null
                 },
-                "GetByIdRequest": {
+                "ListSamuraiById": {
                   "fields": {
-                    "id": {
+                    "ids": {
+                      "rule": "repeated",
                       "type": "string",
                       "id": 1,
                       "comment": null
