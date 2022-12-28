@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: technote-space/get-diff-action@v4.0.1
         with:
-          PATTERNS: schema.graphql
+          PATTERNS: .*/**/schema.graphql
       - name: Dispatch update-graphql-schema
         uses: peter-evans/repository-dispatch@v1
         with:
