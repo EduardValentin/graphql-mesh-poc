@@ -1,0 +1,94 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  com_samurai_v1_SamuraiService_GetById(input: com_samurai_v1_GetByIdRequest_Input): com_samurai_v1_Samurai
+  com_samurai_v1_SamuraiService_ListAllSamurai(input: google_protobuf_Empty_Input): [com_samurai_v1_Samurai]
+  com_samurai_v1_SamuraiService_ListById(input: com_samurai_v1_ListSamuraiById_Input): [com_samurai_v1_Samurai]
+  com_samurai_v1_SamuraiService_connectivityState(tryToConnect: Boolean): ConnectivityState
+  com_sword_v1_SwordService_ListSwords(input: google_protobuf_Empty_Input): [com_sword_v1_Sword]
+  com_sword_v1_SwordService_ListBySamuraiId(input: com_sword_v1_ListBySamuraiIdRequest_Input): [com_sword_v1_Sword]
+  com_sword_v1_SwordService_GetById(input: com_sword_v1_GetByIdRequest_Input): com_sword_v1_Sword
+  com_sword_v1_SwordService_ListById(input: com_sword_v1_ListSwordsByIdRequest_Input): [com_sword_v1_Sword]
+  com_sword_v1_SwordService_GetSamuraiWithSwords(input: com_sword_v1_SamuraiWithSwordsRequest_Input): com_sword_v1_SamuraiWithSwordsResponse
+  com_sword_v1_SwordService_ListSamuraiWithSwords(input: com_sword_v1_ListSamuraiWithSwordsRequest_Input): [com_sword_v1_SamuraiWithSwordsResponse]
+  com_sword_v1_SwordService_connectivityState(tryToConnect: Boolean): ConnectivityState
+}
+
+type com_samurai_v1_Samurai {
+  id: String
+  name: String
+  age: Int
+  swords: [com_sword_v1_Sword]
+}
+
+input com_samurai_v1_GetByIdRequest_Input {
+  id: String
+}
+
+scalar google_protobuf_Empty_Input @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
+
+input com_samurai_v1_ListSamuraiById_Input {
+  ids: [String]
+}
+
+enum ConnectivityState {
+  IDLE
+  CONNECTING
+  READY
+  TRANSIENT_FAILURE
+  SHUTDOWN
+}
+
+type Mutation {
+  com_sword_v1_SwordService_CreateSword(input: com_sword_v1_CreateSwordRequest_Input): com_sword_v1_Sword
+}
+
+type com_sword_v1_Sword {
+  id: String
+  name: String
+  type: com_sword_v1_Type
+  samurai_id: String
+  samurai: com_samurai_v1_Samurai
+}
+
+enum com_sword_v1_Type {
+  UNKNOWN
+  KATANA
+  TACHI
+  UCHIGATANA
+  WAKIZASHI
+}
+
+input com_sword_v1_ListBySamuraiIdRequest_Input {
+  id: String
+}
+
+input com_sword_v1_GetByIdRequest_Input {
+  id: String
+}
+
+input com_sword_v1_ListSwordsByIdRequest_Input {
+  ids: [String]
+}
+
+type com_sword_v1_SamuraiWithSwordsResponse {
+  id: String
+  swords: [com_sword_v1_Sword]
+}
+
+input com_sword_v1_SamuraiWithSwordsRequest_Input {
+  id: String
+}
+
+input com_sword_v1_ListSamuraiWithSwordsRequest_Input {
+  ids: [String]
+}
+
+input com_sword_v1_CreateSwordRequest_Input {
+  name: String
+  type: com_sword_v1_Type
+  samurai_id: String
+}
