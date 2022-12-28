@@ -9,6 +9,7 @@ message Sword {
   string name = 2;
   Type type = 3;
   string samurai_id = 4;
+  string created_at = 5;
 }
 
 enum Type {
