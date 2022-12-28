@@ -71,7 +71,6 @@ export type com_sword_v1_Sword = {
   name?: Maybe<Scalars['String']>;
   type?: Maybe<com_sword_v1_Type>;
   samurai_id?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['String']>;
 };
 
 export type com_sword_v1_Type =

@@ -12,12 +12,35 @@ export default [
       "package": "com.samurai.v1",
       "messageType": [
         {
+          "name": "ListSamuraiResponse",
+          "field": [
+            {
+              "name": "items",
+              "number": 1,
+              "label": "LABEL_REPEATED",
+              "type": "TYPE_MESSAGE",
+              "typeName": "Samurai"
+            }
+          ]
+        },
+        {
           "name": "GetByIdRequest",
           "field": [
             {
               "name": "id",
               "number": 1,
               "label": "LABEL_OPTIONAL",
+              "type": "TYPE_STRING"
+            }
+          ]
+        },
+        {
+          "name": "ListSamuraiById",
+          "field": [
+            {
+              "name": "ids",
+              "number": 1,
+              "label": "LABEL_REPEATED",
               "type": "TYPE_STRING"
             }
           ]
@@ -42,29 +65,6 @@ export default [
               "number": 3,
               "label": "LABEL_OPTIONAL",
               "type": "TYPE_INT32"
-            }
-          ]
-        },
-        {
-          "name": "ListSamuraiResponse",
-          "field": [
-            {
-              "name": "items",
-              "number": 1,
-              "label": "LABEL_REPEATED",
-              "type": "TYPE_MESSAGE",
-              "typeName": "Samurai"
-            }
-          ]
-        },
-        {
-          "name": "ListSamuraiById",
-          "field": [
-            {
-              "name": "ids",
-              "number": 1,
-              "label": "LABEL_REPEATED",
-              "type": "TYPE_STRING"
             }
           ]
         }
@@ -143,9 +143,31 @@ export default [
                   },
                   "comment": null
                 },
+                "ListSamuraiResponse": {
+                  "fields": {
+                    "items": {
+                      "rule": "repeated",
+                      "type": "Samurai",
+                      "id": 1,
+                      "comment": null
+                    }
+                  },
+                  "comment": null
+                },
                 "GetByIdRequest": {
                   "fields": {
                     "id": {
+                      "type": "string",
+                      "id": 1,
+                      "comment": null
+                    }
+                  },
+                  "comment": null
+                },
+                "ListSamuraiById": {
+                  "fields": {
+                    "ids": {
+                      "rule": "repeated",
                       "type": "string",
                       "id": 1,
                       "comment": null
@@ -168,28 +190,6 @@ export default [
                     "age": {
                       "type": "int32",
                       "id": 3,
-                      "comment": null
-                    }
-                  },
-                  "comment": null
-                },
-                "ListSamuraiResponse": {
-                  "fields": {
-                    "items": {
-                      "rule": "repeated",
-                      "type": "Samurai",
-                      "id": 1,
-                      "comment": null
-                    }
-                  },
-                  "comment": null
-                },
-                "ListSamuraiById": {
-                  "fields": {
-                    "ids": {
-                      "rule": "repeated",
-                      "type": "string",
-                      "id": 1,
                       "comment": null
                     }
                   },

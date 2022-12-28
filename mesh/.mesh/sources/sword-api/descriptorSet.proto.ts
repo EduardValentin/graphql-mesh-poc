@@ -47,6 +47,17 @@ export default [
           ]
         },
         {
+          "name": "GetByIdRequest",
+          "field": [
+            {
+              "name": "id",
+              "number": 1,
+              "label": "LABEL_OPTIONAL",
+              "type": "TYPE_STRING"
+            }
+          ]
+        },
+        {
           "name": "Sword",
           "field": [
             {
@@ -73,34 +84,6 @@ export default [
               "number": 4,
               "label": "LABEL_OPTIONAL",
               "type": "TYPE_STRING"
-            },
-            {
-              "name": "created_at",
-              "number": 5,
-              "label": "LABEL_OPTIONAL",
-              "type": "TYPE_STRING"
-            }
-          ]
-        },
-        {
-          "name": "GetByIdRequest",
-          "field": [
-            {
-              "name": "id",
-              "number": 1,
-              "label": "LABEL_OPTIONAL",
-              "type": "TYPE_STRING"
-            }
-          ]
-        },
-        {
-          "name": "SamuraiWithSwordsRequest",
-          "field": [
-            {
-              "name": "id",
-              "number": 1,
-              "label": "LABEL_OPTIONAL",
-              "type": "TYPE_STRING"
             }
           ]
         },
@@ -119,6 +102,17 @@ export default [
               "label": "LABEL_REPEATED",
               "type": "TYPE_MESSAGE",
               "typeName": "Sword"
+            }
+          ]
+        },
+        {
+          "name": "SamuraiWithSwordsRequest",
+          "field": [
+            {
+              "name": "id",
+              "number": 1,
+              "label": "LABEL_OPTIONAL",
+              "type": "TYPE_STRING"
             }
           ]
         },
@@ -320,6 +314,16 @@ export default [
                   },
                   "comment": null
                 },
+                "GetByIdRequest": {
+                  "fields": {
+                    "id": {
+                      "type": "string",
+                      "id": 1,
+                      "comment": null
+                    }
+                  },
+                  "comment": null
+                },
                 "Sword": {
                   "fields": {
                     "id": {
@@ -340,11 +344,6 @@ export default [
                     "samurai_id": {
                       "type": "string",
                       "id": 4,
-                      "comment": null
-                    },
-                    "created_at": {
-                      "type": "string",
-                      "id": 5,
                       "comment": null
                     }
                   },
@@ -367,26 +366,6 @@ export default [
                     "WAKIZASHI": null
                   }
                 },
-                "GetByIdRequest": {
-                  "fields": {
-                    "id": {
-                      "type": "string",
-                      "id": 1,
-                      "comment": null
-                    }
-                  },
-                  "comment": null
-                },
-                "SamuraiWithSwordsRequest": {
-                  "fields": {
-                    "id": {
-                      "type": "string",
-                      "id": 1,
-                      "comment": null
-                    }
-                  },
-                  "comment": null
-                },
                 "SamuraiWithSwordsResponse": {
                   "fields": {
                     "id": {
@@ -398,6 +377,16 @@ export default [
                       "rule": "repeated",
                       "type": "Sword",
                       "id": 2,
+                      "comment": null
+                    }
+                  },
+                  "comment": null
+                },
+                "SamuraiWithSwordsRequest": {
+                  "fields": {
+                    "id": {
+                      "type": "string",
+                      "id": 1,
                       "comment": null
                     }
                   },
