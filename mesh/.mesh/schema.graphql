@@ -3,38 +3,44 @@ schema {
   mutation: Mutation
 }
 
-type Query {
-  com_samurai_v1_SamuraiService_GetById(input: com_samurai_v1_GetByIdRequest_Input): com_samurai_v1_Samurai
-  com_samurai_v1_SamuraiService_ListAllSamurai(input: google_protobuf_Empty_Input): [com_samurai_v1_Samurai]
-  com_samurai_v1_SamuraiService_ListById(input: com_samurai_v1_ListSamuraiById_Input): [com_samurai_v1_Samurai]
-  com_samurai_v1_SamuraiService_connectivityState(tryToConnect: Boolean): ConnectivityState
-  com_sword_v1_SwordService_ListSwords(input: google_protobuf_Empty_Input): [com_sword_v1_Sword]
-  com_sword_v1_SwordService_ListBySamuraiId(input: com_sword_v1_ListBySamuraiIdRequest_Input): [com_sword_v1_Sword]
-  com_sword_v1_SwordService_GetById(input: com_sword_v1_GetByIdRequest_Input): com_sword_v1_Sword
-  com_sword_v1_SwordService_ListById(input: com_sword_v1_ListSwordsByIdRequest_Input): [com_sword_v1_Sword]
-  com_sword_v1_SwordService_GetSamuraiWithSwords(input: com_sword_v1_SamuraiWithSwordsRequest_Input): com_sword_v1_SamuraiWithSwordsResponse
-  com_sword_v1_SwordService_ListSamuraiWithSwords(input: com_sword_v1_ListSamuraiWithSwordsRequest_Input): [com_sword_v1_SamuraiWithSwordsResponse]
-  com_sword_v1_SwordService_connectivityState(tryToConnect: Boolean): ConnectivityState
+directive @grpcMethod(rootJsonName: String, objPath: String, methodName: String, responseStream: Boolean) on FIELD_DEFINITION
+
+directive @grpcConnectivityState(rootJsonName: String, objPath: String) on FIELD_DEFINITION
+
+directive @grpcRootJson(name: String, rootJson: ObjMap, loadOptions: ObjMap) repeatable on OBJECT
+
+type Query @grpcRootJson(name: "Root0", rootJson: "{\"nested\":{\"com\":{\"nested\":{\"sword\":{\"nested\":{\"v1\":{\"options\":{\"java_multiple_files\":true},\"nested\":{\"SwordService\":{\"methods\":{\"CreateSword\":{\"requestType\":\"CreateSwordRequest\",\"responseType\":\"Sword\",\"comment\":null},\"ListSwords\":{\"requestType\":\"google.protobuf.Empty\",\"responseType\":\"Sword\",\"responseStream\":true,\"comment\":null},\"ListBySamuraiId\":{\"requestType\":\"ListBySamuraiIdRequest\",\"responseType\":\"Sword\",\"responseStream\":true,\"comment\":null},\"GetById\":{\"requestType\":\"GetByIdRequest\",\"responseType\":\"Sword\",\"comment\":null},\"ListById\":{\"requestType\":\"ListSwordsByIdRequest\",\"responseType\":\"Sword\",\"responseStream\":true,\"comment\":null},\"GetSamuraiWithSwords\":{\"requestType\":\"SamuraiWithSwordsRequest\",\"responseType\":\"SamuraiWithSwordsResponse\",\"comment\":null},\"ListSamuraiWithSwords\":{\"requestType\":\"ListSamuraiWithSwordsRequest\",\"responseType\":\"SamuraiWithSwordsResponse\",\"responseStream\":true,\"comment\":null}},\"comment\":null},\"CreateSwordRequest\":{\"fields\":{\"name\":{\"type\":\"string\",\"id\":1,\"comment\":null},\"type\":{\"type\":\"Type\",\"id\":2,\"comment\":null},\"samurai_id\":{\"type\":\"string\",\"id\":3,\"comment\":null},\"sword_attributes\":{\"type\":\"SwordAttributes\",\"id\":4,\"comment\":null}},\"comment\":null},\"Sword\":{\"fields\":{\"id\":{\"type\":\"string\",\"id\":1,\"comment\":null},\"name\":{\"type\":\"string\",\"id\":2,\"comment\":null},\"type\":{\"type\":\"Type\",\"id\":3,\"comment\":null},\"samurai_id\":{\"type\":\"string\",\"id\":4,\"comment\":null},\"created_at\":{\"type\":\"string\",\"id\":5,\"comment\":null}},\"comment\":null},\"Type\":{\"values\":{\"UNKNOWN\":0,\"KATANA\":1,\"TACHI\":2,\"UCHIGATANA\":3,\"WAKIZASHI\":4},\"comment\":null,\"comments\":{\"UNKNOWN\":null,\"KATANA\":null,\"TACHI\":null,\"UCHIGATANA\":null,\"WAKIZASHI\":null}},\"SamuraiWithSwordsRequest\":{\"fields\":{\"id\":{\"type\":\"string\",\"id\":1,\"comment\":null}},\"comment\":null},\"ListBySamuraiIdRequest\":{\"fields\":{\"id\":{\"type\":\"string\",\"id\":1,\"comment\":null}},\"comment\":null},\"GetByIdRequest\":{\"fields\":{\"id\":{\"type\":\"string\",\"id\":1,\"comment\":null}},\"comment\":null},\"SamuraiWithSwordsResponse\":{\"fields\":{\"id\":{\"type\":\"string\",\"id\":1,\"comment\":null},\"swords\":{\"rule\":\"repeated\",\"type\":\"Sword\",\"id\":2,\"comment\":null}},\"comment\":null},\"ListSwordsByIdRequest\":{\"fields\":{\"ids\":{\"rule\":\"repeated\",\"type\":\"string\",\"id\":1,\"comment\":null}},\"comment\":null},\"ListSamuraiWithSwordsRequest\":{\"fields\":{\"ids\":{\"rule\":\"repeated\",\"type\":\"string\",\"id\":1,\"comment\":null}},\"comment\":null},\"SwordAttributes\":{\"fields\":{\"blade_width\":{\"type\":\"float\",\"id\":1,\"comment\":null},\"blade_height\":{\"type\":\"float\",\"id\":2,\"comment\":null},\"handle_length\":{\"type\":\"float\",\"id\":3,\"comment\":null},\"handle_color\":{\"type\":\"string\",\"id\":4,\"comment\":null},\"decoration\":{\"type\":\"string\",\"id\":5,\"comment\":null}},\"comment\":null}}}}}}},\"google\":{\"nested\":{\"protobuf\":{\"nested\":{\"Empty\":{\"fields\":{},\"comment\":null}}}}}}}") {
+  comSamuraiV1SamuraiServiceGetById(input: comSamuraiV1GetByIdRequestInput): V1Samurai @grpcMethod(rootJsonName: "Root0", objPath: "com.samurai.v1.SamuraiService", methodName: "GetById", responseStream: false)
+  comSamuraiV1SamuraiServiceListAllSamurai(input: googleProtobufEmptyInput): [V1Samurai] @grpcMethod(rootJsonName: "Root0", objPath: "com.samurai.v1.SamuraiService", methodName: "ListAllSamurai", responseStream: true)
+  comSamuraiV1SamuraiServiceListById(input: V1ListSamuraiByIdInput): [V1Samurai] @grpcMethod(rootJsonName: "Root0", objPath: "com.samurai.v1.SamuraiService", methodName: "ListById", responseStream: true)
+  comSamuraiV1SamuraiServiceConnectivityState(tryToConnect: Boolean): connectivityState @grpcConnectivityState(rootJsonName: "Root0", objPath: "com.samurai.v1.SamuraiService")
+  apiV1SwordServiceListSwords(input: googleProtobufEmptyInput): [V1Sword] @grpcMethod(rootJsonName: "Root0", objPath: "com.sword.v1.SwordService", methodName: "ListSwords", responseStream: true)
+  apiV1SwordServiceListBySamuraiId(input: V1ListBySamuraiIdRequestInput): [V1Sword] @grpcMethod(rootJsonName: "Root0", objPath: "com.sword.v1.SwordService", methodName: "ListBySamuraiId", responseStream: true)
+  apiV1SwordServiceGetById(input: V1GetByIdRequestInput): V1Sword @grpcMethod(rootJsonName: "Root0", objPath: "com.sword.v1.SwordService", methodName: "GetById", responseStream: false)
+  apiV1SwordServiceListById(input: V1ListSwordsByIdRequestInput): [V1Sword] @grpcMethod(rootJsonName: "Root0", objPath: "com.sword.v1.SwordService", methodName: "ListById", responseStream: true)
+  apiV1SwordServiceGetSamuraiWithSwords(input: V1SamuraiWithSwordsRequestInput): V1SamuraiWithSwordsResponse @grpcMethod(rootJsonName: "Root0", objPath: "com.sword.v1.SwordService", methodName: "GetSamuraiWithSwords", responseStream: false)
+  apiV1SwordServiceListSamuraiWithSwords(input: V1ListSamuraiWithSwordsRequestInput): [V1SamuraiWithSwordsResponse] @grpcMethod(rootJsonName: "Root0", objPath: "com.sword.v1.SwordService", methodName: "ListSamuraiWithSwords", responseStream: true)
+  apiV1SwordServiceConnectivityState(tryToConnect: Boolean): connectivityState @grpcConnectivityState(rootJsonName: "Root0", objPath: "com.sword.v1.SwordService")
 }
 
-type com_samurai_v1_Samurai {
+type V1Samurai {
   id: String
   name: String
   age: Int
-  swords: [com_sword_v1_Sword]
+  swords: [V1Sword]
 }
 
-input com_samurai_v1_GetByIdRequest_Input {
+input comSamuraiV1GetByIdRequestInput {
   id: String
 }
 
-scalar google_protobuf_Empty_Input @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
+scalar googleProtobufEmptyInput @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
 
-input com_samurai_v1_ListSamuraiById_Input {
+input V1ListSamuraiByIdInput {
   ids: [String]
 }
 
-enum ConnectivityState {
+enum connectivityState {
   IDLE
   CONNECTING
   READY
@@ -42,20 +48,22 @@ enum ConnectivityState {
   SHUTDOWN
 }
 
+scalar ObjMap
+
 type Mutation {
-  com_sword_v1_SwordService_CreateSword(input: com_sword_v1_CreateSwordRequest_Input): com_sword_v1_Sword
+  apiV1SwordServiceCreateSword(input: V1CreateSwordRequestInput): V1Sword @grpcMethod(rootJsonName: "Root0", objPath: "com.sword.v1.SwordService", methodName: "CreateSword", responseStream: false)
 }
 
-type com_sword_v1_Sword {
+type V1Sword {
   id: String
   name: String
-  type: com_sword_v1_Type
-  samurai_id: String
-  created_at: String
-  samurai: com_samurai_v1_Samurai
+  type: V1Type
+  samuraiId: String
+  createdAt: String
+  samurai: V1Samurai
 }
 
-enum com_sword_v1_Type {
+enum V1Type {
   UNKNOWN
   KATANA
   TACHI
@@ -63,33 +71,42 @@ enum com_sword_v1_Type {
   WAKIZASHI
 }
 
-input com_sword_v1_ListBySamuraiIdRequest_Input {
+input V1ListBySamuraiIdRequestInput {
   id: String
 }
 
-input com_sword_v1_GetByIdRequest_Input {
+input V1GetByIdRequestInput {
   id: String
 }
 
-input com_sword_v1_ListSwordsByIdRequest_Input {
+input V1ListSwordsByIdRequestInput {
   ids: [String]
 }
 
-type com_sword_v1_SamuraiWithSwordsResponse {
+type V1SamuraiWithSwordsResponse {
   id: String
-  swords: [com_sword_v1_Sword]
+  swords: [V1Sword]
 }
 
-input com_sword_v1_SamuraiWithSwordsRequest_Input {
+input V1SamuraiWithSwordsRequestInput {
   id: String
 }
 
-input com_sword_v1_ListSamuraiWithSwordsRequest_Input {
+input V1ListSamuraiWithSwordsRequestInput {
   ids: [String]
 }
 
-input com_sword_v1_CreateSwordRequest_Input {
+input V1CreateSwordRequestInput {
   name: String
-  type: com_sword_v1_Type
-  samurai_id: String
+  type: V1Type
+  samuraiId: String
+  swordAttributes: V1SwordAttributesInput
+}
+
+input V1SwordAttributesInput {
+  bladeWidth: Float
+  bladeHeight: Float
+  handleLength: Float
+  handleColor: String
+  decoration: String
 }

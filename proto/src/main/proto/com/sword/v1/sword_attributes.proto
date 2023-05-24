@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package com.sword.v1;
+
+option java_multiple_files = true;
+
+message SwordAttributes {
+  float blade_width = 1;
+  float blade_height = 2;
+  float handle_length = 3;
+  string handle_color = 4;
+  string decoration = 5;
+}

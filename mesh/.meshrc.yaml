@@ -18,6 +18,40 @@ sources:
             includeDirs:
               - ../proto/src/main/proto
 
+transforms:
+  - namingConvention:
+      typeNames: camelCase
+      fieldNames: camelCase
+      fieldArgumentNames: camelCase
+  - rename:
+      renames:
+        - from:
+            field: comSword
+            type: Mutation
+          to:
+            field: api
+            type: Mutation
+          useRegExpForTypes: true
+          useRegExpForFields: true
+        - from:
+            field: comSword
+            type: Query
+          to:
+            field: api
+            type: Query
+          useRegExpForTypes: true
+          useRegExpForFields: true
+        - from:
+            type: comSword
+          to:
+            type: ""
+          useRegExpForTypes: true
+        - from:
+            type: comSamurai
+          to:
+            type: ""
+          useRegExpForTypes: true
+
 additionalTypeDefs: |
   extend type com_samurai_v1_Samurai {
     swords: [com_sword_v1_Sword]
