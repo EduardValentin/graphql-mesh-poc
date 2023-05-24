@@ -20,6 +20,7 @@ export type Scalars = {
   Int: number;
   Float: number;
   google_protobuf_Empty_Input: any;
+  ObjMap: any;
 };
 
 export type Query = {

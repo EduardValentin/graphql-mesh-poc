@@ -1,12 +1,10 @@
 import { print } from "graphql";
-import { com_samurai_v1_Samurai, Resolvers } from "./.mesh";
+import { V1Samurai, Resolvers } from "./.mesh";
 
 export const resolvers: Resolvers = {
 	com_sword_v1_Sword: {
 		samurai(root, args, context, info) {
-			return context[
-				"samurai-api"
-			].Query.com_samurai_v1_SamuraiService_ListById({
+			return context["samurai-api"].Query.apiV1SamuraiServiceListById({
 				root,
 				context,
 				info,
@@ -16,7 +14,7 @@ export const resolvers: Resolvers = {
 					return { input: { ids } };
 				},
 				valuesFromResults: (data) =>
-					(data as [com_samurai_v1_Samurai]).find(
+					(data as [V1Samurai]).find(
 						(samurai) => samurai.id === root.samurai_id
 					),
 				selectionSet: (samuraiSelectionSet) => /* GraphQL */ `

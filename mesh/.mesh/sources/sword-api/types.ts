@@ -17,8 +17,10 @@ export type Scalars = {
   /** The `Boolean` scalar type represents `true` or `false`. */
   Boolean: boolean;
   Int: number;
+  /** The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). */
   Float: number;
   google_protobuf_Empty_Input: any;
+  ObjMap: any;
 };
 
 export type Query = {
@@ -126,6 +128,15 @@ export type com_sword_v1_CreateSwordRequest_Input = {
   name?: InputMaybe<Scalars['String']>;
   type?: InputMaybe<com_sword_v1_Type>;
   samurai_id?: InputMaybe<Scalars['String']>;
+  sword_attributes?: InputMaybe<com_sword_v1_SwordAttributes_Input>;
+};
+
+export type com_sword_v1_SwordAttributes_Input = {
+  blade_width?: InputMaybe<Scalars['Float']>;
+  blade_height?: InputMaybe<Scalars['Float']>;
+  handle_length?: InputMaybe<Scalars['Float']>;
+  handle_color?: InputMaybe<Scalars['String']>;
+  decoration?: InputMaybe<Scalars['String']>;
 };
 
   export type QuerySdk = {

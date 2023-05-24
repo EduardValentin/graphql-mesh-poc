@@ -3,6 +3,7 @@ syntax = "proto3";
 package com.sword.v1;
 
 import "com/sword/v1/sword.proto";
+import "com/sword/v1/sword_attributes.proto";
 
 option java_multiple_files = true;
 
@@ -10,4 +11,5 @@ message CreateSwordRequest {
   string name = 1;
   Type type = 2;
   string samurai_id = 3;
+  SwordAttributes sword_attributes = 4;
 }
